@@ -1,0 +1,4 @@
+keyboard==0.13.5
+mouse==0.7.1
+PyUserInput==0.1.10
+windows==0.1.1
