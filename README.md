@@ -1,2 +1,2 @@
 # python-mouse-capture
-Simple example showing mouse events capture and replay
+Simple example showing mouse events record and play
