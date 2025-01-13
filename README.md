@@ -6,7 +6,7 @@ Simple example showing mouse events record and play
 - source .venv/Scripts/activate
 - python -m pip install --upgrade pip
 
-### Install mouse and pickle packages (Windows)
+### Install mouse package
 - pip install -r requirements.txt
 
 ### Run capture 
