@@ -1,7 +1,7 @@
 ## python-mouse-capture
 Simple example showing mouse events record and play
 
-### Initiate and set up the python virtual environment for local development
+### Initiate and set up the python virtual environment
 - python -m venv .venv
 - source .venv/Scripts/activate
 - python -m pip install --upgrade pip
