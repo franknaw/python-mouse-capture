@@ -1,6 +1,17 @@
-import mouse
-import time
+import os
 import pickle
+import sys
+import time
+
+import mouse
+
+
+def disable_print():
+    sys.stdout = open(os.devnull, 'w')
+
+
+def enable_print():
+    sys.stdout = sys.__stdout__
 
 
 def run_mouse(mm_events, length):
@@ -25,5 +36,9 @@ def load_events():
 
 
 if __name__ == "__main__":
+    if len(sys.argv) - 1 > 0:
+        if sys.argv[1] == "show":
+            enable_print()
+    else:
+        disable_print()
     run_mouse(load_events(), 100)
-
