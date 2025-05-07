@@ -2,8 +2,14 @@ import os
 import pickle
 import sys
 import time
+import random
 
 import mouse
+
+var1 = 'mm_events.txt'
+var2 = 'mm_events1.txt'
+var3 = 'mm_events2.txt'
+variables = [var1, var2, var3]
 
 
 def disable_print():
@@ -20,7 +26,7 @@ def run_mouse(mm_events, length):
         idx = 1
         for x in range(length):
             print(f"Working {idx}", flush=True)
-            time.sleep(30)
+            time.sleep(length)
             mouse.play(mm_events[:-1])
             idx += 1
     except KeyboardInterrupt:
@@ -28,17 +34,22 @@ def run_mouse(mm_events, length):
         exit()
 
 
-def load_events():
-    f = open('mm_events.txt', 'rb')
+def load_events(event_file):
+    f = open(f'{event_file}', 'rb')
     event = pickle.load(f)
     f.close()
     return event
 
 
+def randomize_events():
+    run_mouse(load_events(random.choice(variables)), random.randint(10, 20))
+
+
 if __name__ == "__main__":
     if len(sys.argv) - 1 > 0:
-        if sys.argv[1] == "show":
-            enable_print()
+        enable_print()
     else:
         disable_print()
-    run_mouse(load_events(), 100)
+    for i in range(random.randint(5, 10)):
+        randomize_events()
+
