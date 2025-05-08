@@ -10,6 +10,7 @@ var1 = 'mm_events.txt'
 var2 = 'mm_events1.txt'
 var3 = 'mm_events2.txt'
 variables = [var1, var2, var3]
+max_time = time.time() + 600
 
 
 def disable_print():
@@ -21,12 +22,15 @@ def enable_print():
 
 
 def run_mouse(mm_events, length):
+    current_time = time.time()
     print("Hello!", flush=True)
     try:
         idx = 1
         for x in range(length):
+            if current_time > max_time:
+                exit()
             print(f"Working {idx}", flush=True)
-            time.sleep(length)
+            time.sleep(random.randint(5, 10))
             mouse.play(mm_events[:-1])
             idx += 1
     except KeyboardInterrupt:
@@ -42,7 +46,7 @@ def load_events(event_file):
 
 
 def randomize_events():
-    run_mouse(load_events(random.choice(variables)), random.randint(10, 20))
+    run_mouse(load_events(random.choice(variables)), random.randint(1, 5))
 
 
 if __name__ == "__main__":
@@ -50,6 +54,5 @@ if __name__ == "__main__":
         enable_print()
     else:
         disable_print()
-    for i in range(random.randint(5, 10)):
+    for i in range(random.randint(10, 20)):
         randomize_events()
-
