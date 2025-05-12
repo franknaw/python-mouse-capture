@@ -1,31 +1,33 @@
 import os
 import pickle
+from typing import Any
 import sys
 import time
 import random
 
 import mouse
 
-var1 = 'mm_events.txt'
-var2 = 'mm_events1.txt'
-var3 = 'mm_events2.txt'
-variables = [var1, var2, var3]
-max_time = time.time() + 600
+# Type Annotations
+var1: str = 'mm_events.txt'
+var2: str = 'mm_events1.txt'
+var3: str = 'mm_events2.txt'
+variables: list[str] = [var1, var2, var3]
+max_time: float = time.time() + 1200
 
 
-def disable_print():
+def disable_print() -> None:
     sys.stdout = open(os.devnull, 'w')
 
 
-def enable_print():
+def enable_print() -> None:
     sys.stdout = sys.__stdout__
 
 
-def run_mouse(mm_events, length):
-    current_time = time.time()
+def run_mouse(mm_events, length) -> None:
+    current_time: float = time.time()
     print("Hello!", flush=True)
     try:
-        idx = 1
+        idx: int = 1
         for x in range(length):
             if current_time > max_time:
                 exit()
@@ -38,14 +40,12 @@ def run_mouse(mm_events, length):
         exit()
 
 
-def load_events(event_file):
-    f = open(f'{event_file}', 'rb')
-    event = pickle.load(f)
-    f.close()
-    return event
+def load_events(event_file) -> Any:
+    with open(f'{event_file}', 'rb') as file:
+        return pickle.load(file)
 
 
-def randomize_events():
+def randomize_events() -> None:
     run_mouse(load_events(random.choice(variables)), random.randint(1, 5))
 
 
