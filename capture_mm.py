@@ -2,13 +2,11 @@ import mouse
 import pickle
 
 
-def capture_mm():
-    mm_events = mouse.record()
-    f = open('mm_events.txt', 'wb')
-    pickle.dump(mm_events, f)
-    f.close()
+def capture_mm() -> None:
+    mm_events: list = mouse.record()
+    with open('mm_events.txt', 'wb') as file:
+        pickle.dump(mm_events, file)
 
 
 if __name__ == "__main__":
     capture_mm()
-
